@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="center">
+    <img class="card-img-top" *ngIf="img" src={{img}}>
+  </div>
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+    <ng-content></ng-content>
+  </div>
+</div>

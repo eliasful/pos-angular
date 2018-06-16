@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="col-md-12 order-md-1">
+    <h4 class="mb-3">{{title}}</h4>
+    <form [formGroup]="meuForm" class="needs-validation" novalidate="" (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">Nome</label>
+          <input type="text" class="form-control" id="firstName"
+            required formControlName="nome" [(ngModel)]="dados.nome">
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="address">CPF</label>
+          <input type="text" class="form-control" id="address"
+            required formControlName="cpf" [(ngModel)]="dados.cpf">
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>
+      </div>
+      
+      <div class="d-block my-3">
+        <label>Gênero</label>
+        <div class="custom-control custom-radio">
+          <input id="credit" name="genero" type="radio"
+            class="custom-control-input" checked required value="M"
+            formControlName="genero" [(ngModel)]="dados.genero">
+          <label class="custom-control-label" for="credit">Masculino</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="debit" name="genero" type="radio"
+            class="custom-control-input" required value="F"
+            formControlName="genero" [(ngModel)]="dados.genero">
+          <label class="custom-control-label" for="debit">Feminino</label>
+        </div>
+      </div>
+      
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">
+        <i class="fa fa-save"></i> Salvar
+      </button>
+    </form>
+  </div>
+
+</div>
