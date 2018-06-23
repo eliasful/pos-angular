@@ -15,11 +15,13 @@ import { ListarComponent } from './listar/listar.component';
 
 import { CrudService } from './crud/crud.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListaCursosComponent },
   { path: 'angular', component: AngularComponent },
   { path: 'cadastro', component: CadastroComponent },
+  { path: 'cadastro/:id', component: CadastroComponent },
   { path: 'listar', component: ListarComponent },
 ];
 
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     AngularComponent,
     ListaCursosComponent,
     CadastroComponent,
-    ListarComponent
+    ListarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

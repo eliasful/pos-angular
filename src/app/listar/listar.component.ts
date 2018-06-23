@@ -17,4 +17,8 @@ export class ListarComponent implements OnInit {
     this.dados = this.service.getDados();
   }
 
+  deleteDados(id: number) {
+    this.service.delete(id);
+    this.dados = this.service.getDados();
+  }
 }

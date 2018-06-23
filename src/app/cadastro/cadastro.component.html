@@ -7,9 +7,16 @@
           <label for="firstName">Nome</label>
           <input type="text" class="form-control" id="firstName"
             required formControlName="nome" [(ngModel)]="dados.nome">
-          <div class="invalid-feedback">
-            Valid first name is required.
-          </div>
+            <div class="invalid-feedback" *ngIf="meuForm.get('nome').invalid && (meuForm.get('nome').dirty ||
+        meuForm.get('nome').touched)" class="alert alert-danger">
+
+                <div *ngIf="meuForm.get('nome').errors.required">
+                    Nome é obrigatório.
+                </div>
+                <div *ngIf="meuForm.get('nome').errors.minlength">
+                    Informe no mínimo 4 caracteres.
+                </div>
+            </div>
         </div>
 
         <div class="col-md-6 mb-3">
@@ -39,7 +46,7 @@
       </div>
       
       <hr class="mb-4">
-      <button class="btn btn-primary btn-lg btn-block" type="submit">
+      <button [disabled] = "!meuForm.valid" class="btn btn-primary btn-lg btn-block" type="submit">
         <i class="fa fa-save"></i> Salvar
       </button>
     </form>

@@ -8,15 +8,14 @@
     <table class="table table-hover table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Nome</th>
           <th>Gênero</th>
           <th>CPF</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody >
         <tr *ngFor="let dado of dados">
-          <th>{{dado.id}}</th>
           <td>{{dado.nome}}</td>
           <td>
             <div *ngIf="dado.genero == 'M';then m else f"></div>
@@ -24,6 +23,12 @@
             <ng-template #f>Feminino</ng-template>
           </td>
           <td>{{dado.cpf}}</td>
+          <td>
+             <a [routerLink]="['/cadastro',dado.id]" class="btn btn-light">
+                     <i class="fa fa-wpforms"></i>
+             </a>
+             <a (click)="deleteDados(dado.id)" class="btn btn-light"><i class="fa fa-trash"></i></a>
+          </td>
         </tr>
       </tbody>
     </table>

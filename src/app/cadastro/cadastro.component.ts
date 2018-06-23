@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { CrudService } from '../crud/crud.service';
 import { Dados } from '../crud/dados';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,19 +15,27 @@ export class CadastroComponent implements OnInit {
   meuForm: FormGroup;
   
   constructor(
-    private service: CrudService;
-    @Inject(FormBuilder) formBuilder: FormBuilder;
+    private service: CrudService,
+    @Inject(FormBuilder) formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router
   ) {
     this.meuForm = formBuilder.group({
-      nome: [],
-      genero: [],
-      cpf: []
+      nome: [Validators.required, Validators.minLength(4)],
+      genero: [''],
+      cpf: ['']
     });
   }
 
   ngOnInit() {
-    this.dados = new Dados();
+    let dadosId = Number(this.route.snapshot.params['id']);
+    if (dadosId) {
+      this.title = 'Editar Dados';
+      this.dados = this.service.getById(dadosId);
+    } else {
+      this.title = "Inserir Dados";
+      this.dados = new Dados();
+    }
   }
 
   salvar() {
